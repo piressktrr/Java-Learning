@@ -23,15 +23,27 @@ public class RuntimeExceptionTest4 {
 //            throwsNewExceptions();
 //        }
 
+//        try {
+//            throwsNewExceptions();
+//        } catch (SQLException e) {
+//            System.out.println("SQLException in throws new Exception");
+//            e.printStackTrace();
+//            throw e;
+//        } catch (FileNotFoundException e) {
+//            System.out.println("FileNotFoundException");
+//        }FileNotFoundException
+        // aq em cima é do jeito "mais antigo e verboso"
+
         try {
             throwsNewExceptions();
-        } catch (SQLException e) {
-            System.out.println("SQLException in throws new Exception");
+        } catch (SQLException | FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println("SQLException and FileNotFoundException");
             throw e;
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException");
+
+
         }
+
 
     }
 

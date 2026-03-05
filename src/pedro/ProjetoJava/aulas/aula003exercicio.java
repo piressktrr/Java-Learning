@@ -9,6 +9,7 @@ public class aula003exercicio {
         String data = "15/05/2025";
 
         System.out.println("Eu "+nome+" morando no endereço "+endereço+", confirmo que recebi o salarios de R$"+salario+", na data "+data+"");
+
     }
     
 }
