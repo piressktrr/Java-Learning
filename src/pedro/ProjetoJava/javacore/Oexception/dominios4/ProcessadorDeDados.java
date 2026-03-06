@@ -17,8 +17,7 @@ public class ProcessadorDeDados {
                     System.out.println(array[0].contains("a"));
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException | NullPointerException e) {
-                System.out.println("Erro!! o tipo do erro é: " + e.getClass().getName());
-                e.printStackTrace();
+                System.out.println("Erro!! o tipo do erro é: " + e.getClass().getSimpleName());
                 throw e;
             }
     }

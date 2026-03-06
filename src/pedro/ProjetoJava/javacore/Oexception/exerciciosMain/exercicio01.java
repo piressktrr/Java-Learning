@@ -13,8 +13,11 @@ public class exercicio01 {
         String idade = sc.nextLine();
         try {
             leitor.leitorDeIdade(idade);
-        } catch (IdadeInvalidaException e) {
-            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Nao é numero inválido!, digite um numero " + e.getMessage());
+        }  catch (IdadeInvalidaException e) {
+            System.out.println("Idade invalida!: " + e.getMessage());
         }
+        sc.close();
     }
 }

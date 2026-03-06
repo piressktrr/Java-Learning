@@ -10,6 +10,11 @@ public class exercicio03 {
         Scanner input = new Scanner(System.in);
         System.out.println("Digite sua senha: ");
         String senha = input.nextLine();
-        validador.validarSenha(senha);
+        try {
+            validador.validarSenha(senha);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        input.close();
     }
 }
