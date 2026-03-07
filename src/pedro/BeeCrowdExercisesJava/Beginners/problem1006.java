@@ -16,7 +16,7 @@ public class problem1006 {
         if (A < 0 || B < 0 || C < 0) {
             throw new IllegalArgumentException("A or B or C are negative");
         }
-        double MEDIA = (A+B+C)/3;
+        double MEDIA = (A+B+C)/10;
         System.out.println("MEDIA = " + String.format("%.2f", MEDIA));
 
     }
