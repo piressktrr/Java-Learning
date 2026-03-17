@@ -3,7 +3,7 @@ package pedro.BeeCrowdExercisesJava.Beginners2;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class problem1047 {
+public class problem1047maisDificil {
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
 
