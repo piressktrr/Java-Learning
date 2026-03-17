@@ -10,6 +10,7 @@ public class aula003exercicio {
 
         System.out.println("Eu "+nome+" morando no endereço "+endereço+", confirmo que recebi o salarios de R$"+salario+", na data "+data+"");
 
+
     }
     
 }
