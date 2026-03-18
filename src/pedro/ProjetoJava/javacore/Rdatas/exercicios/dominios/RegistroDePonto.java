@@ -18,12 +18,16 @@ public class RegistroDePonto {
     }
 
     public Duration returnHoursWorked() {
+        if (this.horaEntrada < 0 || this.horaSaida < 0)
+            return Duration.ZERO;
        Duration duracao = Duration.between(LocalTime.of(horaEntrada, 0), LocalTime.of(horaSaida, 0));
        return duracao;
 
     }
 
     public void journey8HoursWorked() {
+        if (returnHoursWorked() == null)
+            return;
         int hours = returnHoursWorked().toHoursPart();
         if (hours < 8) {
             System.out.println("O funcionário não cumpriu as 8 horas diárias!");
@@ -37,6 +41,9 @@ public class RegistroDePonto {
     }
 
     public void setNomeFuncionario(String nomeFuncionario) {
+        if (nomeFuncionario == null || nomeFuncionario.isBlank()) {
+            return;
+        }
         this.nomeFuncionario = nomeFuncionario;
     }
 
@@ -45,6 +52,8 @@ public class RegistroDePonto {
     }
 
     public void setHoraEntrada(int horaEntrada) {
+        if (horaEntrada < 0)
+            return;
         this.horaEntrada = horaEntrada;
     }
 
@@ -53,6 +62,9 @@ public class RegistroDePonto {
     }
 
     public void setHoraSaida(int horaSaida) {
+        if (horaSaida < 0) {
+            return;
+        }
         this.horaSaida = horaSaida;
     }
 

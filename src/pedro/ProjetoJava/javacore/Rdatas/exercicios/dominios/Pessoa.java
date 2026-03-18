@@ -9,6 +9,9 @@ public class Pessoa {
     private String dataDeNascimento;
 
     public void calculReturn (String dataDeNascimento) {
+        if (dataDeNascimento == null || dataDeNascimento.length() > 10) {
+            return;
+        }
         LocalDate dataDeNascimentoLocal = LocalDate.parse(dataDeNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Period period = Period.between(dataDeNascimentoLocal, LocalDate.now());
         System.out.println(period.getYears() + " anos, " + period.getMonths() + " meses e " + period.getDays() +
@@ -20,6 +23,9 @@ public class Pessoa {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.isEmpty()) {
+            return;
+        }
         this.nome = nome;
     }
 
@@ -28,6 +34,9 @@ public class Pessoa {
     }
 
     public void setDataDeNascimento(String dataDeNascimento) {
+        if (dataDeNascimento == null || dataDeNascimento.isEmpty()) {
+            return;
+        }
         this.dataDeNascimento = dataDeNascimento;
     }
 }

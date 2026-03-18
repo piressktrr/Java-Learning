@@ -16,11 +16,16 @@ public class ex005 {
         try {
             Duration durationError = Duration.between(LocalDate.of(2026, 1, 5), LocalDate.now());
         } catch (UnsupportedTemporalTypeException e) {
-            System.out.println("Erro na data de duration "+ e.getMessage());
+            System.out.println("Erro na data de duration, pede o tempo em minutos, horas, nanos e segundos, " +
+                    "teria que usar o ofDays para funcionar. " +
+                    e.getMessage());
+
             // pelo o que eu entendi, a duration pede o tempo em MINUTOS, NANOS e SEGUNDOS
             // quando se usa between, caso eu quisesse os dias eu teria que usar ofDays, que nem eu fiz acima.
             // por isso o erro.
-            e.printStackTrace();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

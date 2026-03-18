@@ -14,11 +14,15 @@ public class ex006 {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate = LocalDate.parse(dateOfBirth, formatter);
         LocalDate today = LocalDate.now();
-        System.out.println(birthDate.getDayOfMonth() + " " + birthDate.getMonthValue());
-        if (birthDate.getDayOfMonth() == today.getDayOfMonth() &&  birthDate.getMonthValue() == today.getMonthValue()) {
-            System.out.println("Parabéns, hoje é seu aniversário!!");
-        } else {
+        birthDate = birthDate.withYear(2026);
 
+        long daysUntilBirthDate = ChronoUnit.DAYS.between(today, birthDate);
+        if (daysUntilBirthDate < 0) {
+            System.out.println("Your bday is already passed!");
+        } else if (daysUntilBirthDate == 0) {
+            System.out.println("Happy bday twin!!!");
+        } else {
+            System.out.println("From now to your birthday is "+daysUntilBirthDate +" days left!");
         }
     }
 

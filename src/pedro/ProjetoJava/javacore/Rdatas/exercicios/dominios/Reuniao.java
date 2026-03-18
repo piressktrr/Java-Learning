@@ -15,6 +15,9 @@ public class Reuniao {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo == null || titulo.isBlank()) {
+            return;
+        }
         this.titulo = titulo;
     }
 
@@ -23,6 +26,9 @@ public class Reuniao {
     }
 
     public void setData(String data) {
+        if (data == null || data.isBlank()) {
+            return;
+        }
         this.data = data;
     }
 }

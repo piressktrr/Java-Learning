@@ -32,6 +32,9 @@ public class Cronometro {
     }
 
     public void setHoraEntrada(Instant horaEntrada) {
+        if (horaEntrada == null) {
+            return;
+        }
         this.horaEntrada = horaEntrada;
     }
 
@@ -40,6 +43,9 @@ public class Cronometro {
     }
 
     public void setHoraSaida(Instant horaSaida) {
+        if (horaSaida == null) {
+            return;
+        }
         this.horaSaida = horaSaida;
     }
 }
