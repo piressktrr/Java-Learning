@@ -1,12 +1,12 @@
 package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
-public class ReuniaoInternacional {
+public class Livro {
     private String titulo;
-    private String data = "2026-04-10";
-    private String horario = "10:00:00";
+    private String autor;
 
-    public ReuniaoInternacional(String titulo) {
+    public Livro(String titulo, String autor) {
         this.titulo = titulo;
+        this.autor = autor;
     }
 
     public String getTitulo() {
@@ -17,11 +17,11 @@ public class ReuniaoInternacional {
         this.titulo = titulo;
     }
 
-    public String getData() {
-        return data;
+    public String getAutor() {
+        return autor;
     }
 
-    public String getHorario() {
-        return horario;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 }
