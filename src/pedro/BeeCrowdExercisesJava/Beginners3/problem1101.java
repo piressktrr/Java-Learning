@@ -1,4 +1,4 @@
-package pedro.BeeCrowdExercisesJava.Beginners2;
+package pedro.BeeCrowdExercisesJava.Beginners3;
 
 import java.util.ArrayList;
 import java.util.Scanner;
