@@ -1,13 +1,26 @@
 package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+
 public class Reuniao {
     private String titulo;
-    private String data;
+    private LocalDate data;
 
 
-    public Reuniao(String titulo, String data) {
+    public Reuniao(String titulo, LocalDate data) {
         this.titulo = titulo;
         this.data = data;
+    }
+
+    public LocalDate getDataAjustada() {
+        DayOfWeek dia = this.data.getDayOfWeek();
+        if (dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY) {
+            return this.data.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        }
+        return this.data;
     }
 
     public String getTitulo() {
@@ -21,12 +34,12 @@ public class Reuniao {
         this.titulo = titulo;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
-        if (data == null || data.isBlank()) {
+    public void setData(LocalDate data) {
+        if (data == null) {
             return;
         }
         this.data = data;

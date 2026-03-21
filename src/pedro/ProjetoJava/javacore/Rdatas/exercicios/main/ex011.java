@@ -10,9 +10,10 @@ public class ex011 {
 
         System.out.println("Fim do periodo de contratação: " + data);
 
+        LocalDate vencimento = LocalDate.of(2024, 1, 15);
 
         for (int i = 1; i <= 6; i++) {
-            System.out.println(data.plusDays(90*i));
+            System.out.println("Renovação "+i+": "+vencimento.plusMonths(6L*i));
         }
     }
 }

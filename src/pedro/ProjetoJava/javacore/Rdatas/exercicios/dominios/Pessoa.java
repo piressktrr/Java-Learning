@@ -6,16 +6,17 @@ import java.time.format.DateTimeFormatter;
 
 public class Pessoa {
     private String nome;
-    private String dataDeNascimento;
+    private LocalDate dataDeNascimento;
 
-    public void calculReturn (String dataDeNascimento) {
-        if (dataDeNascimento == null || dataDeNascimento.length() > 10) {
-            return;
+    public String calcularIdade() {
+        if (this.dataDeNascimento == null) {
+            return "";
         }
-        LocalDate dataDeNascimentoLocal = LocalDate.parse(dataDeNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        Period period = Period.between(dataDeNascimentoLocal, LocalDate.now());
-        System.out.println(period.getYears() + " anos, " + period.getMonths() + " meses e " + period.getDays() +
-                " dias");
+
+        Period period = Period.between(this.dataDeNascimento, LocalDate.now());
+        return "A idade do "+this.nome+ " em: " +period.getYears() + " anos, " + period.getMonths()
+                + " meses, " + period.getDays() + " dias";
+
     }
 
     public String getNome() {
@@ -29,12 +30,12 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getDataDeNascimento() {
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(String dataDeNascimento) {
-        if (dataDeNascimento == null || dataDeNascimento.isEmpty()) {
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        if (dataDeNascimento == null) {
             return;
         }
         this.dataDeNascimento = dataDeNascimento;

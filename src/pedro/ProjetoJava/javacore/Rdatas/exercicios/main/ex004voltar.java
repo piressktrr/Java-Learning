@@ -6,29 +6,25 @@ import java.util.Date;
 
 public class ex004voltar {
 
-    public static void method(String variableOrObj)  {
-        if (variableOrObj == null || variableOrObj.isEmpty()) {
-            return;
+    public static Date metodoParaErro(String string) {
+        if (string == null || string.isEmpty()) {
+            return null;
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
-            System.out.println(sdf.parse(String.valueOf(Date.parse(variableOrObj))));
+            return sdf.parse(string);
         } catch (ParseException e) {
             System.out.println("Ocorreu um erro: " + e.getMessage());
-            return;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return null;
+
         }
-
-        System.out.println(Date.parse(variableOrObj));
-
     }
 
     public static void main(String[] args) {
-        method("21/03/2024");
-        // nao sei qual string passar aqui que daria certo, mas eu sei que daria certo
-        method("22/05/2025");
+        // as duas aqui passam certo pois estao no formato com barra
+        System.out.println(metodoParaErro("22/05/2025"));
+        System.out.println(metodoParaErro("21/03/2024"));
     }
 }

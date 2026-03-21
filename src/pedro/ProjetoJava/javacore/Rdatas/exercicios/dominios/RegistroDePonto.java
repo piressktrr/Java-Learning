@@ -1,40 +1,42 @@
 package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
+
 import java.time.LocalTime;
-import java.time.temporal.*;
+
 
 public class RegistroDePonto {
     private String nomeFuncionario;
-    private int horaEntrada;
-    private int horaSaida;
+    private LocalTime horaEntrada;
+    private LocalTime horaSaida;
 
 
-    public RegistroDePonto(String nomeFuncionario, int horaEntrada, int horaSaida) {
+    public RegistroDePonto(String nomeFuncionario, LocalTime horaEntrada, LocalTime horaSaida) {
         this.nomeFuncionario = nomeFuncionario;
         this.horaEntrada = horaEntrada;
         this.horaSaida = horaSaida;
     }
 
-    public Duration returnHoursWorked() {
-        if (this.horaEntrada < 0 || this.horaSaida < 0)
-            return Duration.ZERO;
-       Duration duracao = Duration.between(LocalTime.of(horaEntrada, 0), LocalTime.of(horaSaida, 0));
+    public long returnHoursWorked() {
+        if (horaEntrada == null || horaSaida == null) {
+            return Duration.ZERO.toHours();
+        }
+       long duracao = Duration.between(horaEntrada, horaSaida).toHours();
        return duracao;
 
     }
 
     public void journey8HoursWorked() {
-        if (returnHoursWorked() == null)
-            return;
-        int hours = returnHoursWorked().toHoursPart();
+        long hours = returnHoursWorked();
         if (hours < 8) {
             System.out.println("O funcionário não cumpriu as 8 horas diárias!");
         } else {
             System.out.println("O funcionário CUMPRIU as 8 horas!");
         }
+
     }
+
+
 
     public String getNomeFuncionario() {
         return nomeFuncionario;
@@ -47,22 +49,22 @@ public class RegistroDePonto {
         this.nomeFuncionario = nomeFuncionario;
     }
 
-    public int getHoraEntrada() {
+    public LocalTime getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(int horaEntrada) {
-        if (horaEntrada < 0)
+    public void setHoraEntrada(LocalTime horaEntrada) {
+        if (horaEntrada  == null)
             return;
         this.horaEntrada = horaEntrada;
     }
 
-    public int getHoraSaida() {
+    public LocalTime getHoraSaida() {
         return horaSaida;
     }
 
-    public void setHoraSaida(int horaSaida) {
-        if (horaSaida < 0) {
+    public void setHoraSaida(LocalTime horaSaida) {
+        if (horaSaida == null) {
             return;
         }
         this.horaSaida = horaSaida;

@@ -1,26 +1,28 @@
 package pedro.ProjetoJava.javacore.Rdatas.exercicios.main;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class ex010 {
 
-    public static void recebeCalendar(Calendar data) {
-        DateFormat BR = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault());
+    public static String recebeCalendar(Calendar data) {
+        DateFormat BR = DateFormat.getDateInstance(DateFormat.FULL, new Locale("pt", "BR"));
         DateFormat US = DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH);
         DateFormat JP = DateFormat.getDateInstance(DateFormat.FULL, Locale.JAPAN);
 
-        System.out.println(BR.format(data.getTime()));
-        System.out.println(US.format(data.getTime()));
-        System.out.println(JP.format(data.getTime()));
+        return "BR: "+BR.format(data.getTime()) + ", US: "  + US.format(data.getTime()) + ", JP: "
+                + JP.format(data.getTime());
 
     }
 
     public static void main(String[] args) {
+        Calendar data = Calendar.getInstance();
 
-        recebeCalendar(Calendar.getInstance());
+        data.set(Calendar.YEAR, 2026);
+        data.set(Calendar.MONTH, Calendar.DECEMBER);
+        data.set(Calendar.DAY_OF_MONTH, 25);
+
+        System.out.println(recebeCalendar(data));
     }
 }

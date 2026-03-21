@@ -2,6 +2,7 @@ package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +10,8 @@ public class Emprestimo {
     private Livro livro;
     private String usuario;
     private LocalDateTime dataDoEmprestimo;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public Emprestimo(Livro livro, String usuario, LocalDateTime emprestimo) {
         this.livro = livro;
@@ -20,6 +23,7 @@ public class Emprestimo {
         if (this.dataDoEmprestimo == null ) {
             return;
         }
+
         LocalDateTime now = LocalDateTime.now();
         long hoursBetweenNowAndEmprestimo = ChronoUnit.HOURS.between(now, this.dataDoEmprestimo);
         long days = TimeUnit.HOURS.toDays(hoursBetweenNowAndEmprestimo);
@@ -46,13 +50,12 @@ public class Emprestimo {
     }
 
     public void resumeOfEmprestimo () {
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
         System.out.println("Titulo do livro: " + this.livro.getTitulo());
         System.out.println("Autor: " + this.livro.getAutor());
-        System.out.println("Data do do emprestimo: " + this.dataDoEmprestimo);
+        System.out.println("Data de validade do emprestimo: " + dataDoEmprestimo.format(formatter));
         System.out.println("Usuário que comprou: " + this.usuario);
         calculReturnOfTheBook();
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
     }
 
@@ -84,4 +87,6 @@ public class Emprestimo {
         if (dataDoEmprestimo == null) {return;}
         this.dataDoEmprestimo = dataDoEmprestimo;
     }
+
+
 }

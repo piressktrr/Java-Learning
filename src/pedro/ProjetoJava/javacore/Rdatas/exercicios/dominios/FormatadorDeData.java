@@ -2,23 +2,30 @@ package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 
 public class FormatadorDeData {
-    public static void patternBR(LocalDateTime localDateTime) {
+    private static final DateTimeFormatter BR = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    private static final DateTimeFormatter ISO =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    private static final DateTimeFormatter FRIENDLY = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy",
+            new Locale("pt", "BR"));
+
+    public static String patternBR(LocalDateTime localDateTime) {
         if (localDateTime == null)
-            return;
-        System.out.println(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(localDateTime));
+            return "";
+        return BR.format(localDateTime);
     }
 
-    public static void patternISO (LocalDateTime localDateTime) {
+    public static String patternISO (LocalDateTime localDateTime) {
         if (localDateTime == null)
-            return;
-        System.out.println(DateTimeFormatter.ofPattern("yyyy/MM/dd 'T'HH:mm:ss").format(localDateTime));
+            return "";
+        return ISO.format(localDateTime);
     }
 
-    public static void patternFriendly (LocalDateTime localDateTime) {
+    public static String patternFriendly (LocalDateTime localDateTime) {
         if (localDateTime == null)
-            return;
-        System.out.println(DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy").format(localDateTime));
+            return "";
+        return FRIENDLY.format(localDateTime);
     }
 }

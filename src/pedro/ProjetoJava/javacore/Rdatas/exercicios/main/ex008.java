@@ -2,18 +2,14 @@ package pedro.ProjetoJava.javacore.Rdatas.exercicios.main;
 
 import pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios.Cronometro;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalAmount;
 
 public class ex008 {
     public static void main(String[] args) {
-        Cronometro cronometro = new Cronometro(Instant.now());
+        Cronometro cronometro = new Cronometro();
         System.out.println("Tempo de entrada: "+cronometro.getHoraEntrada().atZone(ZoneId.systemDefault()));
         int cont = 0;
-        while (cont < 10) {
+        while (cont < 10) { // logica simples pra fazer o cronometro funcionar, coisa basica
             if (cont == 9) {
                 cronometro.parar();
             }
@@ -22,8 +18,8 @@ public class ex008 {
 
         System.out.println("Tempo de saida: " +cronometro.getHoraSaida().atZone(ZoneId.systemDefault()));
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-");
-        cronometro.getTempoMs();
+        System.out.println("Duração em milissegundos: "+ cronometro.getTempoMs());
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-");
-        cronometro.getTempoNs();
+        System.out.println("Duração em nanosegundos: " + cronometro.getTempoNs());
     }
 }

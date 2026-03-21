@@ -1,12 +1,18 @@
 package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class ReuniaoInternacional {
     private String titulo;
-    private String data = "2026-04-10";
-    private String horario = "10:00:00";
+    private ZonedDateTime dataHorario;
 
     public ReuniaoInternacional(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String retornarData () {
+        return getDataHorario().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getTitulo() {
@@ -17,11 +23,11 @@ public class ReuniaoInternacional {
         this.titulo = titulo;
     }
 
-    public String getData() {
-        return data;
+    public ZonedDateTime getDataHorario() {
+        return dataHorario;
     }
 
-    public String getHorario() {
-        return horario;
+    public void setDataHorario(ZonedDateTime dataHorario) {
+        this.dataHorario = dataHorario;
     }
 }

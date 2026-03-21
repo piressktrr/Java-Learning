@@ -14,6 +14,7 @@ public class Livro {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo == null || titulo.isBlank()) {return;}
         this.titulo = titulo;
     }
 
@@ -22,6 +23,9 @@ public class Livro {
     }
 
     public void setAutor(String autor) {
+        if (autor == null || autor.isEmpty()) {
+            return;
+        }
         this.autor = autor;
     }
 }
