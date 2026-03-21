@@ -18,8 +18,8 @@ public class problem1047maisDificil {
             return;
         }
 
-        int DHOUR = 0;
-        int DMINUTE = 0;
+        int DHOUR;
+        int DMINUTE;
 
         IHOUR = (IHOUR * 60) + IMINUTE;
         FHOUR = (FHOUR * 60) + FMINUTE;

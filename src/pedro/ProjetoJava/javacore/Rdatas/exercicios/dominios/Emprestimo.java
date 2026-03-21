@@ -1,6 +1,6 @@
 package pedro.ProjetoJava.javacore.Rdatas.exercicios.dominios;
 
-import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -10,52 +10,59 @@ public class Emprestimo {
     private Livro livro;
     private String usuario;
     private LocalDateTime dataDoEmprestimo;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private int prazoEmDias;
 
 
-    public Emprestimo(Livro livro, String usuario, LocalDateTime emprestimo) {
+    public Emprestimo(Livro livro, String usuario, LocalDateTime emprestimo, int prazoEmDias) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataDoEmprestimo = emprestimo;
+        this.prazoEmDias = prazoEmDias;
     }
 
-    private void calculReturnOfTheBook() {
+    public LocalDate getDataDevolucao() {
+        return dataDoEmprestimo.toLocalDate().plusDays(prazoEmDias);
+    }
+
+    public boolean isAtrasado() {
+        return LocalDate.now().isAfter(getDataDevolucao());
+    }
+
+    private String calculReturnOfTheBook() {
         if (this.dataDoEmprestimo == null ) {
-            return;
+            return "";
         }
 
-        LocalDateTime now = LocalDateTime.now();
-        long hoursBetweenNowAndEmprestimo = ChronoUnit.HOURS.between(now, this.dataDoEmprestimo);
-        long days = TimeUnit.HOURS.toDays(hoursBetweenNowAndEmprestimo);
-        long hoursRemainingFromTheEmprestimo = hoursBetweenNowAndEmprestimo % 24;
-        if (hoursRemainingFromTheEmprestimo > 0 && days > 0) {
-            System.out.println("De hoje até a data final do empréstimo você tem: " + days
-                    + " Dias e " + hoursRemainingFromTheEmprestimo + " Horas!");
+        long dias = ChronoUnit.DAYS.between(LocalDate.now(), getDataDevolucao());
+        long horas = ChronoUnit.HOURS.between(LocalDate.now(), getDataDevolucao());
+
+
+        if (dias > 0) {
+            return "De hoje até a data final do empréstimo você tem: " + dias
+                    + " Dias e " + horas + " Horas!";
         } else {
-            calculIfIsDelayed();
+            return calculIfIsDelayed();
+
         }
     }
 
-    private void calculIfIsDelayed () {
+    private String calculIfIsDelayed () {
         LocalDateTime now = LocalDateTime.now();
         if (TimeUnit.HOURS.toDays(ChronoUnit.HOURS.between(now, this.dataDoEmprestimo)) < 0)  {
+            long daysDelayed = Math.abs(ChronoUnit.DAYS.between(LocalDate.now(), getDataDevolucao()));
+            long hoursDelayed = Math.abs(ChronoUnit.HOURS.between(LocalDate.now(), getDataDevolucao()));
 
-            long hoursDelayed = ChronoUnit.HOURS.between(now, this.dataDoEmprestimo);
-            long daysDelayed = Math.abs(TimeUnit.HOURS.toDays(hoursDelayed));
-            long hoursRemainingFromTheDelayed = Math.abs(hoursDelayed % 24);
-
-            System.out.println("O Livro está com o emprestimo atrasado há: "
-                    + daysDelayed + " Dias e " +  hoursRemainingFromTheDelayed + " Horas");
+            return "O Livro está com o emprestimo atrasado há: " + daysDelayed + " Dias e " + hoursDelayed + " Horas";
         }
+        return "";
     }
 
-    public void resumeOfEmprestimo () {
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-        System.out.println("Titulo do livro: " + this.livro.getTitulo());
-        System.out.println("Autor: " + this.livro.getAutor());
-        System.out.println("Data de validade do emprestimo: " + dataDoEmprestimo.format(formatter));
-        System.out.println("Usuário que comprou: " + this.usuario);
-        calculReturnOfTheBook();
+    public String resumeOfEmprestimo () {
+
+        return "Titulo: " + this.livro.getTitulo() + "\nAutor: " + this.livro.getAutor() +
+                "\nData de validade do emprestimo: " + this.dataDoEmprestimo.format(formatter) +
+                "\nUsuário que comprou: " + this.usuario + calculReturnOfTheBook();
 
     }
 

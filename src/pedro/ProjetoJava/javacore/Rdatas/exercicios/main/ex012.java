@@ -8,24 +8,20 @@ import java.time.LocalDateTime;
 
 public class ex012 {
     public static void main(String[] args) {
-        Livro JavaLivro = new Livro("Titulo Java", "Autor do Java");
-        Emprestimo EmprestimoJava = new Emprestimo(JavaLivro, "Pedrinho",
-                LocalDateTime.of(2026, 03, 28, 10, 30));
+        Livro javaLivro = new Livro("Titulo Java", "Autor do Java");
+        Emprestimo emprestimoJava = new Emprestimo(javaLivro, "Pedrinho",
+                LocalDateTime.of(2026, 03, 28, 10, 30), 10);
 
-        Livro PythonLivro = new Livro("Python iniciantes", "Autor do Python");
-        Emprestimo EmprestimoPython = new Emprestimo(PythonLivro, "Joaozinho",
-                LocalDateTime.of(2026, 02, 20, 15, 20));
-
-
-
+        Livro pythonLivro = new Livro("Python iniciantes", "Autor do Python");
+        Emprestimo emprestimoPython = new Emprestimo(pythonLivro, "Joaozinho",
+                LocalDateTime.of(2026, 02, 20, 15, 20), 10);
         Biblioteca biblioteca = new Biblioteca();
 
+        biblioteca.addEmprestimo(emprestimoPython);
+        biblioteca.addEmprestimo(emprestimoJava);
 
-        biblioteca.addEmprestimo(EmprestimoPython);
-        biblioteca.addEmprestimo(EmprestimoJava);
-
-        EmprestimoJava.resumeOfEmprestimo();
-        EmprestimoPython.resumeOfEmprestimo();
+        System.out.println(emprestimoJava.resumeOfEmprestimo());
+        System.out.println(emprestimoPython.resumeOfEmprestimo());
 
         biblioteca.listaEmprestimos();
     }
