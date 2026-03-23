@@ -3,7 +3,6 @@ package pedro.BeeCrowdExercisesJava.Beginners3;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class problem1146 {

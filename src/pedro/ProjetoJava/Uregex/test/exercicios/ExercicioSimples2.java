@@ -1,10 +1,9 @@
 package pedro.ProjetoJava.Uregex.test.exercicios;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ExercicioSimples {
+public class ExercicioSimples2 {
     public static void main(String[] args) {
         // quantificadores abaixo:
         // ? = zero ou uma
@@ -15,15 +14,15 @@ public class ExercicioSimples {
         // | ou
         // $ fim da linha
         // . = 1.3 = 123 133 143 )caractere coringa(
+        // ^ match para encontrar exatamente o que eu quero no começo da linha (ou o qual eu nao quero depois dela usando[])
+
+        String regexEmail = "([a-zA-Z0-9._-])+@([a-zA-Z])+(\\.([a-zA-Z])+)+";
 
 
-        String regexUm = "0[xX]([0-9a-fA-F])+(\\s|$)";
-        String regexEmail = "([a-zA-Z0-9\\._-])+@([a-zA-Z])+(\\.([a-zA-Z])+)+";
-
-        String texto = "0xBA87 12 0x 0X 0x10G 0X10XZ";
-        String emails = "pedropinto@gmail.com, pedropenis@bol.com, gabrielpinto@mail";
-        Pattern pattern = Pattern.compile(regexUm);
-        Matcher matcher = pattern.matcher(texto);
+        String emails = "pedropinto@gmail.com, #@pedropenis@bol.com, gabrielpinto@mail.com";
+        // aqui so esta encontrando o padrao, nao delimitando e nem validando
+        Pattern pattern = Pattern.compile(regexEmail);
+        Matcher matcher = pattern.matcher(emails);
         while (matcher.find()) {
             System.out.print(matcher.start() + " " + matcher.group() + "\n");
         }

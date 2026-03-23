@@ -12,8 +12,7 @@ public class RegularExpressionTest03 {
         //w = retorna toda as letras, digitos (0,9) e _
         //W = retorna TUDO que o //w nao faz.
         // [] = especifica os caracteres dentro do regex que eu quero que retorne as posições
-        // quantificadores abaixo:
-        //
+
         String regex = "[a-zA-C]";
         String texto2 = "cafeBEBEa";
 
