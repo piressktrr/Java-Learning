@@ -1,4 +1,4 @@
-package pedro.ProjetoJava.Uregex.test;
+package pedro.ProjetoJava.javacore.Uregex.test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
