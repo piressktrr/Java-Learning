@@ -1,6 +1,6 @@
 package pedro.ProjetoAlgoritmos.exercicios;
 
-public class MergeSort01 {
+public class MergeSortTest01 {
     static void mergeSort(int vetor[], int inicio, int j) {
         if (inicio < j) {
             int m = (inicio + j) / 2;
