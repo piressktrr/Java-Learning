@@ -17,7 +17,7 @@ public class reforcoA {
         registroSenhas.adicionar(senha3);
         registroSenhas.adicionar(senha4);
 
-        System.out.println(registroSenhas.buscarPorUsuario(null));
+        System.out.println(registroSenhas.buscarPorUsuario("pedro"));
         System.out.println();
         System.out.println(registroSenhas.listar());
     }

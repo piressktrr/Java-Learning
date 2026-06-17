@@ -29,6 +29,10 @@ public class Evento implements Comparable<Evento>{
 
     @Override
     public int compareTo(Evento o) {
-        return this.data.compareTo(o.getData());
+        int data = this.data.compareTo(o.getData());
+        if (data != 0) return data;
+
+
+        return this.nome.compareTo(o.getNome());
     }
 }

@@ -16,6 +16,13 @@ public class reforcoE {
         fila.adicionarChamado(chamado3);
         fila.adicionarChamado(chamado4);
 
+
         System.out.println(fila.listarEmOrdem());
+
+        System.out.println("----------------------------");
+
+        System.out.println(fila.proximoChamado());
+        System.out.println(fila.processarChamado());
+        System.out.println(fila.processarChamado());
     }
 }

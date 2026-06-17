@@ -15,8 +15,9 @@ public class FilaSuporte {
         fila.offer(chamado);
     }
 
-    public void proximoChamado() {
+    public Chamado proximoChamado() {
 
+        return fila.peek();
     }
 
     public Chamado processarChamado() {
@@ -25,11 +26,9 @@ public class FilaSuporte {
 
     public List<Chamado> listarEmOrdem() {
         List<Chamado> lista = new ArrayList<>();
-        Queue<Chamado> filaTeste = this.fila;
 
-        while(!filaTeste.isEmpty()){
-            lista.add(filaTeste.poll());
-        }
+        lista.addAll(fila);
+        lista.sort(Chamado::compareTo);
 
         return lista;
     }

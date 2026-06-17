@@ -8,22 +8,22 @@ public class RegistroSenhas {
     private List<Senha> senhas = new ArrayList<>();
 
     public void adicionar(Senha s) {
-        if (s.getUsuario() == null || s.getValor() == null) {
+        if (s.getUsuario() == null || s.getValor() == null || s.getUsuario().isBlank() || s.getValor().isBlank()) {
             throw new IllegalArgumentException("usuario e/ou senha em branco ou nulo");
         }
 
-        if (!this.senhas.toString().contains(s.getUsuario())) {
+        if (!this.senhas.contains(s)) {
             this.senhas.add(s);
         }
     }
 
-    public Optional<Senha> buscarPorUsuario (Senha s) {
-        Optional<Senha> senha = Optional.ofNullable(s);
-        if (senha.isEmpty()) {
-            throw new IllegalArgumentException("usuario nao esta presente nos registros de senha");
-        } else {
-            return senha;
+    public Optional<Senha> buscarPorUsuario (String usuario) {
+        for (Senha senha : this.senhas) {
+            if (usuario.equalsIgnoreCase(senha.getUsuario())) {
+                return Optional.of(senha);
+            }
         }
+        return Optional.empty();
     }
 
     public List<Senha> listar() {

@@ -17,7 +17,7 @@ public class reforcoC {
 
         agenda.adicionarEvento(evento);
         agenda.adicionarEvento(evento1);
-        agenda.adicionarEvento(evento2); // continuar amanha
+        agenda.adicionarEvento(evento2);
         agenda.adicionarEvento(eventoA);
         agenda.adicionarEvento(eventoB);
 
