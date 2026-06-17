@@ -7,29 +7,23 @@ public class Ex009 {
     public static void main(String[] args) {
         LinkedHashMap<String, Integer> estoque = new LinkedHashMap<>(); // chave nome produto; valor quantidade
 
-        // preferi fazer tudo com void, até por que o exercicio não pede para retornar nada, apenas para adicionar, remover
-        // atualizar e listar
-
-        // nenhuma dessas ações devolve valor, logo, void
-
-        adicionar(estoque, "teste", 10);
-        adicionar(estoque, "prego", 3);
-        adicionar(estoque, "parafusadeira", 10);
-
+        adicionar(estoque, "pedro", 10);
+        adicionar(estoque, "pedro", 10);
         listar(estoque);
-        System.out.println("------------------");
-        listarPorValor(estoque, 10);
     }
 
     public static void adicionar(Map<String, Integer> estoque, String nome, int quantidade) {
         if (nome.isBlank() || quantidade < 0) {
             throw new IllegalArgumentException("nome em branco ou quantidade < 0");
         }
-
-        estoque.put(nome, estoque.getOrDefault(nome, 0) + quantidade); // pelo o que eu entendi
-        // o getOrDefault faz com que se a chave ja exista  ele soma com o value que ja existe
-        // se eu fizer sem isso ele simplesmente substitui
+        estoque.put(nome, estoque.getOrDefault(nome, 0) + quantidade);
     }
+
+
+
+
+
+
 
 
     public static void atualizar(Map<String, Integer> estoque, String nome, int quantidade) {
