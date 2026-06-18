@@ -3,5 +3,6 @@ package pedro.ProjetoJava.javacore.Ycollections.test.exerciciosReforco.dominios.
 public enum Nivel {
     CRITICO,
     ALTO,
-    MEDIO
+    MEDIO,
+    BAIXO
 }

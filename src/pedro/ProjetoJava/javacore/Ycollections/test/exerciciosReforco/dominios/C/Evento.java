@@ -31,8 +31,6 @@ public class Evento implements Comparable<Evento>{
     public int compareTo(Evento o) {
         int data = this.data.compareTo(o.getData());
         if (data != 0) return data;
-
-
         return this.nome.compareTo(o.getNome());
     }
 }

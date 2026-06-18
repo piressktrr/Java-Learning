@@ -7,6 +7,10 @@ public class BoletimEscolar {
 
 
     public void adicionarAvaliaçao(Avaliacao av) {
+        if (av == null) {
+            throw new IllegalArgumentException("avaliaçao nula");
+        }
+
         if (!avaliacoes.contains(av)) {
             avaliacoes.add(av);
         }

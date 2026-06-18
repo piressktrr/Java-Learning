@@ -19,7 +19,11 @@ public class Avaliacao {
     }
 
     public void setNota(double nota) {
-        this.nota = nota;
+        if (nota > 0){
+            this.nota = nota;
+        } else {
+            throw new IllegalArgumentException("Nota inválida!");
+        }
     }
 
     public double getNota() {

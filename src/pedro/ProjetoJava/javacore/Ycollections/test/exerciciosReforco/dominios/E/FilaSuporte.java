@@ -4,11 +4,10 @@ import java.util.*;
 
 public class FilaSuporte {
     private Queue<Chamado> fila = new PriorityQueue<>();
-    private PriorityQueue<Chamado> teste = new PriorityQueue<>();
 
 
     public void adicionarChamado(Chamado chamado){
-        if (chamado.getId() < 0 || chamado.getDescricao() == null || chamado.getDescricao().isEmpty()){
+        if (chamado.getId() <= 0 || chamado.getDescricao() == null || chamado.getDescricao().isBlank()){
             throw new IllegalArgumentException("Erro, id menor que 0 ou descrição nula ou vazia!");
         }
 
