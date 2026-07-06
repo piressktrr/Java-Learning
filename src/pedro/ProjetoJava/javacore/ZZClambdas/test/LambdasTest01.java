@@ -10,6 +10,8 @@ public class LambdasTest01 {
 
         forTeste(strings, s -> System.out.println(s));
         forTeste(integers, s -> System.out.println(s));
+
+        // aqui é um sout pq eu tenho que usar um void por causa do consumer
     }
 
     public static <T> void forTeste (List<T> lista, Consumer<T> consumer) {

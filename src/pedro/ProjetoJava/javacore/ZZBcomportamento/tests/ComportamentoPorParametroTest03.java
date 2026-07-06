@@ -1,7 +1,6 @@
 package pedro.ProjetoJava.javacore.ZZBcomportamento.tests;
 
 import pedro.ProjetoJava.javacore.ZZBcomportamento.dominios.Carro;
-import pedro.ProjetoJava.javacore.ZZBcomportamento.interfaces.CarPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,23 +18,30 @@ public class ComportamentoPorParametroTest03 {
         System.out.println("---------------------");
         System.out.println(anoFiltrado);
         System.out.println("---------------------");
+
         System.out.println(filtro(carros, carro -> carro.getMarca().equalsIgnoreCase("bmw")));
         System.out.println("---------------------");
+
         System.out.println("teste com nomes: ");
         System.out.println(filtro(nomes, nome -> nome.toLowerCase().contains("pedro")));
         System.out.println("---------------------");
+
         System.out.println("teste com numeros: ");
         System.out.println(filtro(numeros, numero -> numero % 2 == 0));
+        System.out.println("-----------------");
     }
 
 
     
-    private static <T> List<T> filtro (List<T> listaGenerica, Predicate<T> generico) {
+    private static <T> List<T> filtro (List<T> listaGenerica, Predicate<T> testeGenerico) {
         List<T> listaFiltrados = new ArrayList<>();
 
-        for (T objeto : listaGenerica) {
-            if (generico.test(objeto)) {
-                listaFiltrados.add(objeto);
+        for (T objetoGenerico : listaGenerica) {
+            if (testeGenerico.test(objetoGenerico))  {
+                // se for compativel adiciona na lista de filtrados
+                // e o teste daqui na verdade é o teste da classe predicate já, o teste da CarPredicate é apenas uma
+                // demonstração dessa outra classe
+                listaFiltrados.add(objetoGenerico);
             }
         }
 

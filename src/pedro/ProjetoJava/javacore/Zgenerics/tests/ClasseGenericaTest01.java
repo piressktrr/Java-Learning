@@ -16,6 +16,8 @@ public class ClasseGenericaTest01 {
         serviceRentalCarro.retornarCarroAlugado(carro);
 
         System.out.println("---------------------------------");
+
+
         RentalService<Barco> serviceRentalBarco = new RentalService<>(barcos);
         Barco barco = serviceRentalBarco.buscarobjetosDisponiveis();
         System.out.println("ALugando barco por um mês..");
