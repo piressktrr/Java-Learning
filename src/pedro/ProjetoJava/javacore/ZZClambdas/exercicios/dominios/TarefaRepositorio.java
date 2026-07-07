@@ -1,28 +1,23 @@
 package pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-public class TarefaRepositorio  {
+import java.util.*;
 
-    private  RepositorioEmMemoria repoMem;
+public class TarefaRepositorio extends RepositorioEmMemoria<Tarefa, Long>  {
 
+    public TarefaRepositorio() {
+        super();
+    }
 
+    public String buscarPorTitulo(String titulo) {
+        Map<Long, Tarefa> map = getMapa();
 
-    public String buscarPorTitulo(String  titulo){
-        List<List> list = new ArrayList<>();
-
-        if (repoMem.listarTodos() != null) {
-            list.addAll(repoMem.listarTodos());
+        for (Map.Entry<Long, Tarefa> entry : map.entrySet()) {
+            if (entry.getValue().getNomeTarefa().equals(titulo)) {
+                return entry.toString();
+            }
         }
-
-        if (list.contains(titulo)) {
-            return titulo;
-        }
-
         return null;
-
     }
 
 }

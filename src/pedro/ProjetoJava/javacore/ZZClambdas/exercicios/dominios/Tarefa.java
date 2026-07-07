@@ -1,6 +1,6 @@
 package pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios;
 
-public class Tarefa extends TarefaRepositorio {
+public class Tarefa implements Identificavel<Long>{
     private String nomeTarefa;
     private String tipoTarefa;
     private Long ID;
@@ -36,11 +36,13 @@ public class Tarefa extends TarefaRepositorio {
         this.tipoTarefa = tipoTarefa;
     }
 
-    public Long getID() {
-        return ID;
-    }
 
     public void setID(Long ID) {
         this.ID = ID;
+    }
+
+    @Override
+    public Long getId() {
+        return this.ID;
     }
 }

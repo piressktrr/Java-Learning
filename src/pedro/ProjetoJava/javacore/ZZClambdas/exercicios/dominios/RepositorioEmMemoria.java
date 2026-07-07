@@ -1,34 +1,46 @@
 package pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RepositorioEmMemoria <T, ID extends Identificavel<T>> implements Repositorio<ID, T>{
-    private Map<ID, T> mapa = new HashMap<>();
+public class RepositorioEmMemoria<T extends Identificavel<ID>, ID> implements Repositorio<T, ID> {
+    private final Map<ID, T> mapa = new HashMap<>();
 
     @Override
-    public void salvar(ID entidade) {
-        if (entidade != null) {
-            mapa.put(entidade, entidade.getT());
+    public void salvar(T entidade) {
+        mapa.put(entidade.getId(), entidade);
+    }
+
+    @Override
+    public String buscarPorId(ID id) {
+        for (Map.Entry<ID, T> entry : mapa.entrySet()) { // decorar essa estrtura
+            if (entry.getKey().equals(id)) {
+                return entry.getValue().toString();
+            }
         }
+        return null;
     }
 
     @Override
-    public void buscarPorId(T t) {
-
+    public List<T> listarTodos() {
+        List<T> values = new ArrayList<>();
+        for (Map.Entry<ID, T> entry : mapa.entrySet()) {
+            values.add(entry.getValue());
+        }
+        return values;
     }
 
     @Override
-    public List<ID> listarTodos() {
-        return List.of();
-    }
-
-    @Override
-    public void deletar(T t) {
-
+    public void deletar(ID id) {
+        mapa.remove(id);
     }
 
     // classe 100% generica que nao sabe nada sobre o que ta recebendo
 
+
+    public Map<ID, T> getMapa() {
+        return mapa;
+    }
 }
