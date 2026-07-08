@@ -9,12 +9,12 @@ public class TarefaRepositorio extends RepositorioEmMemoria<Tarefa, Long>  {
         super();
     }
 
-    public String buscarPorTitulo(String titulo) {
-        Map<Long, Tarefa> map = getMapa();
 
-        for (Map.Entry<Long, Tarefa> entry : map.entrySet()) {
-            if (entry.getValue().getNomeTarefa().equals(titulo)) {
-                return entry.toString();
+    public String buscarPorTitulo(String titulo) {
+        List<Tarefa> listaTodos = listarTodos();
+        for (Tarefa tarefa : listaTodos) {
+            if (tarefa.getNomeTarefa().equals(titulo)) {
+                return tarefa.getNomeTarefa();
             }
         }
         return null;

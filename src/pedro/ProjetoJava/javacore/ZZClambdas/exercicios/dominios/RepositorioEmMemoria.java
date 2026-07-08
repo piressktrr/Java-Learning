@@ -14,12 +14,11 @@ public class RepositorioEmMemoria<T extends Identificavel<ID>, ID> implements Re
     }
 
     @Override
-    public String buscarPorId(ID id) {
-        for (Map.Entry<ID, T> entry : mapa.entrySet()) { // decorar essa estrtura
-            if (entry.getKey().equals(id)) {
-                return entry.getValue().toString();
-            }
+    public T buscarPorId(ID id) {
+        if (mapa.containsKey(id)) {
+            return mapa.get(id);
         }
+        // tinha me esquecido do get, preciso melhorar nas estruturas de dados
         return null;
     }
 
@@ -39,8 +38,4 @@ public class RepositorioEmMemoria<T extends Identificavel<ID>, ID> implements Re
 
     // classe 100% generica que nao sabe nada sobre o que ta recebendo
 
-
-    public Map<ID, T> getMapa() {
-        return mapa;
-    }
 }

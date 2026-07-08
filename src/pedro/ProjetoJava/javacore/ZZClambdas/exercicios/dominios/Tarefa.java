@@ -1,14 +1,21 @@
 package pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tarefa implements Identificavel<Long>{
     private String nomeTarefa;
     private String tipoTarefa;
-    private Long ID;
+    private Long id;
+    private LocalDateTime dataCriacao;
+    private List<HistoricoAlteracao> historicoAlteracao = new ArrayList<>();
 
-    public Tarefa(String nomeTarefa, String tipoTarefa, Long ID ) {
+    public Tarefa(String nomeTarefa, String tipoTarefa, Long ID, LocalDateTime dataCriacao ) {
         this.nomeTarefa = nomeTarefa;
         this.tipoTarefa = tipoTarefa;
-        this.ID = ID;
+        this.id = ID;
+        this.dataCriacao = dataCriacao;
     }
 
     @Override
@@ -16,7 +23,7 @@ public class Tarefa implements Identificavel<Long>{
         return "Tarefa{" +
                 "nomeTarefa='" + nomeTarefa + '\'' +
                 ", tipoTarefa='" + tipoTarefa + '\'' +
-                ", ID=" + ID +
+                ", ID=" + id +
                 '}';
     }
 
@@ -24,25 +31,52 @@ public class Tarefa implements Identificavel<Long>{
         return nomeTarefa;
     }
 
-    public void setNomeTarefa(String nomeTarefa) {
-        this.nomeTarefa = nomeTarefa;
-    }
 
     public String getTipoTarefa() {
         return tipoTarefa;
     }
 
-    public void setTipoTarefa(String tipoTarefa) {
-        this.tipoTarefa = tipoTarefa;
-    }
-
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
     @Override
     public Long getId() {
-        return this.ID;
+        return this.id;
+    }
+
+    public void registrarAlteracao(String campo, Object valorAntigo, Object novoValor) {
+        historicoAlteracao.add(new HistoricoAlteracao(campo, valorAntigo, novoValor));
+    }
+
+    public void checkAlteracao() {
+        for (HistoricoAlteracao alteracao : historicoAlteracao) {
+            System.out.println("Tarefa alterada:  " + alteracao.campo + " - " + alteracao.valorAntigo + " - " + alteracao.novoValor + " - "
+                    + alteracao.dataCriacaoAlt  );
+            System.out.println("--------");
+        }
+    }
+
+    class HistoricoAlteracao {
+        String campo;
+        String novoValor;
+        String valorAntigo;
+
+        LocalDateTime dataCriacaoAlt;
+
+        public HistoricoAlteracao(String campo, Object valorAntigo, Object novoValor) {
+
+            if (campo.equalsIgnoreCase("NomeTarefa")) {
+                this.campo = nomeTarefa;
+                this.novoValor = novoValor.toString();
+                this.valorAntigo = valorAntigo.toString();
+            } else if (campo.equalsIgnoreCase("TipoTarefa")) {
+                this.campo = tipoTarefa;
+                this.novoValor = novoValor.toString();
+                this.valorAntigo = valorAntigo.toString();
+            } else {
+                throw new IllegalArgumentException("Coloque algum argumento válido!");
+            }
+
+            this.dataCriacaoAlt = LocalDateTime.now();
+
+        }
+
     }
 }

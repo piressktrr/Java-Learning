@@ -10,7 +10,7 @@ public class Par <A, B>{
     }
 
     public static <A, B> Par<A, B> create(A a, B b) {
-        return new Par<A, B>(a, b);
+        return new Par<>(a, b);
         // entendi, precisa botar a generics depois do static e antes do retorno do metodo
     }
 

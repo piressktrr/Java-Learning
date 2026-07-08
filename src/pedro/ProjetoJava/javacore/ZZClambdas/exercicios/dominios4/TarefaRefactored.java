@@ -5,13 +5,16 @@ public class TarefaRefactored {
     private final String descricao;
     private final Prioridade prioridade;
 
-    private TarefaRefactored(Builder builder) {
-        TarefaRefactored t = new Builder()
-                .definirNome("Teste")
-                .definirDescricao("Testando")
-                .definirPrioridade(Prioridade.MEDIA)
-                .build();
+    @Override
+    public String toString() {
+        return "TarefaRefactored{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", prioridade=" + prioridade +
+                '}';
+    }
 
+    private TarefaRefactored(Builder builder) {
         this.nome = builder.nome;
         this.descricao = builder.descricao;
         this.prioridade = builder.prioridade;
@@ -19,21 +22,21 @@ public class TarefaRefactored {
     }
 
     public static class Builder {
-        String nome;
-        String descricao;
-        Prioridade prioridade;
+        private String nome;
+        private String descricao;
+        private Prioridade prioridade;
 
-        Builder definirNome(String nome) {
+        public Builder definirNome(String nome) {
             this.nome = nome;
             return this; // o return this que permite ir aninhando os metodos la em cima
         }
 
-        Builder definirDescricao(String descricao) {
+        public Builder definirDescricao(String descricao) {
             this.descricao = descricao;
             return this;
         }
 
-        Builder definirPrioridade(Prioridade prioridade) {
+        public Builder definirPrioridade(Prioridade prioridade) {
             this.prioridade = prioridade;
             return this;
         }

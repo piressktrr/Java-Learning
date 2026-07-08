@@ -4,11 +4,13 @@ import pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios.Identificavel;
 import pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios.Tarefa;
 import pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios.TarefaRepositorio;
 
+import java.time.LocalDateTime;
+
 public class main001 {
 
     public static void main(String[] args) {
-        Tarefa tarefa1 = new Tarefa("almoçar", "fome", 4242L);
-        Tarefa tarefa2 = new Tarefa("correr", "exercicio", 2312L);
+        Tarefa tarefa1 = new Tarefa("almoçar", "fome", 4242L, LocalDateTime.now());
+        Tarefa tarefa2 = new Tarefa("correr", "exercicio", 2312L,LocalDateTime.now());
 
         TarefaRepositorio tarefaRepositorio = new TarefaRepositorio();
 

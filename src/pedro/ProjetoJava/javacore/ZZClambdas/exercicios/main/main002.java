@@ -14,12 +14,13 @@ public class main002 {
         return resultado;
 
         // uso de extends Number somente para a leitura da lista, pois eu nao sei o tipo que vai vir
-        // entao para garantir a integridade é melhor so ler
+        // entao para garantir a integridade é melhor so ler, pois o compilador nao sabe qual subtipo exato é o wildcard
+        // e bloqueia inserçao pq n da pra garantir o type safety
 
     }
 
     public static void adicionarInteiros(List<? super Integer> lista, int quantidade) {
-        for (int i = 0; i < quantidade; i++) {
+        for (int i = 1; i < quantidade; i++) {
             lista.add(i);
         }
         // uso do super Integer pois eu quero adicionar elementos, mas pode vir number, object e etc

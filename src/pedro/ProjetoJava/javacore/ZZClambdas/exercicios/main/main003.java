@@ -3,9 +3,11 @@ package pedro.ProjetoJava.javacore.ZZClambdas.exercicios.main;
 import pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios.Tarefa;
 import pedro.ProjetoJava.javacore.ZZClambdas.exercicios.dominios3.Par;
 
+import java.time.LocalDateTime;
+
 public class main003 {
     public static void main(String[] args) {
-        Tarefa tarefa = new Tarefa("teste", "somente teste", 42L);
+        Tarefa tarefa = new Tarefa("teste", "somente teste", 42L, LocalDateTime.now());
 
         Par<Tarefa, Boolean> teste1 = Par.create(tarefa, true);
         Par<Tarefa, Boolean> teste2 = Par.create(tarefa, false);
