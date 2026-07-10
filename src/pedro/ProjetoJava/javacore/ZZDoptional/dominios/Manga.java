@@ -39,4 +39,8 @@ public class Manga {
     public int getAnoLancado() {
         return anoLancado;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
