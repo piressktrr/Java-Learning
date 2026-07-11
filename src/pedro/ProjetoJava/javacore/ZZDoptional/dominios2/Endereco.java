@@ -1,4 +1,4 @@
-package pedro.ProjetoJava.javacore.ZZDoptional.dominios3;
+package pedro.ProjetoJava.javacore.ZZDoptional.dominios2;
 
 public class Endereco {
     private String complemento;

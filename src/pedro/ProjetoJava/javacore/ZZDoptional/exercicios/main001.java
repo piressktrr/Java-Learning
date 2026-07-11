@@ -1,27 +1,23 @@
 package pedro.ProjetoJava.javacore.ZZDoptional.exercicios;
 
-import pedro.ProjetoJava.javacore.ZZDoptional.dominios.Manga;
-import pedro.ProjetoJava.javacore.ZZDoptional.dominios.MangaRepository;
+import pedro.ProjetoJava.javacore.ZZDoptional.dominios1.Livro;
+import pedro.ProjetoJava.javacore.ZZDoptional.dominios1.RepositorioLivro;
 
-import java.util.Comparator;
-import java.util.function.Function;
 
 public class main001 {
     public static void main(String[] args) {
+        RepositorioLivro repositorioLivro = new RepositorioLivro();
+        Livro livro = new Livro("Dostoievski", "Memorias do subsolo");
 
-       MangaRepository.findByTitle("dbz")
-               .ifPresent(System.out::println);
+        repositorioLivro.findByAutor("Dostoievski").ifPresentOrElse(
+                l -> System.out.println("Titulo encontrado: " +l.getTitulo())
+                , () -> System.out.println("NÃO TEM TITULO"));
 
-       Manga mangaId = MangaRepository.findById(40L)
-               .orElseThrow(IllegalArgumentException::new);
 
-       System.out.println(mangaId);
+        repositorioLivro.findByTitle("Habitos Atomicos").orElseThrow(
+                () -> new IllegalArgumentException("Não existe esse titulo"));
 
-       Manga mangaCriar = MangaRepository.findByTitle("akira")
-               .orElseGet(() -> new Manga("akira", 1, 1995, 60L));
-
-        System.out.println(mangaCriar);
+        repositorioLivro.findByAutor("Ivan Ilitch").orElseGet(
+                () -> new Livro("Ivan Ilitch", "TITUTLO DESCONHECIDO"));
     }
-
-
 }

@@ -1,23 +1,14 @@
 package pedro.ProjetoJava.javacore.ZZDoptional.exercicios;
 
-import pedro.ProjetoJava.javacore.ZZDoptional.dominios2.Livro;
-import pedro.ProjetoJava.javacore.ZZDoptional.dominios2.RepositorioLivro;
-
+import pedro.ProjetoJava.javacore.ZZDoptional.dominios2.Endereco;
+import pedro.ProjetoJava.javacore.ZZDoptional.dominios2.Funcionario;
 
 public class main002 {
     public static void main(String[] args) {
-        RepositorioLivro repositorioLivro = new RepositorioLivro();
-        Livro livro = new Livro("Dostoievski", "Memorias do subsolo");
 
-        repositorioLivro.findByAutor("Dostoievski").ifPresentOrElse(
-                l -> System.out.println("Titulo encontrado: " +l.getTitulo())
-                , () -> System.out.println("NÃO TEM TITULO"));
+        Funcionario funcionario = new Funcionario
+                ("pedro", 20, new Endereco("CASA 6 ", "pintassilgo", "320"));
 
-
-        repositorioLivro.findByTitle("Habitos Atomicos").orElseThrow(
-                () -> new IllegalArgumentException("Não existe esse titulo"));
-
-        repositorioLivro.findByAutor("Ivan Ilitch").orElseGet(
-                () -> new Livro("Ivan Ilitch", "TITUTLO DESCONHECIDO"));
+        System.out.println(funcionario.returnComplemento());
     }
 }
