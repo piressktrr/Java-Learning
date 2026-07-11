@@ -3,18 +3,22 @@ package pedro.ProjetoJava.javacore.ZZDoptional.exercicios;
 import pedro.ProjetoJava.javacore.ZZDoptional.dominios5.Pacote;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
+
 
 public class main005 {
     public static void main(String[] args) {
-        Pacote pacote = new Pacote("blusa", 2.0, 100.0);
+        Pacote pacote = new Pacote("blusa", 0.200, 100.0);
+        Pacote pacote2 = new Pacote("tenis", 1.200, 45.0);
+        Pacote pacote3 = new Pacote("monitor", 1.400, 20.0);
 
-        BiFunction<Double, Double, Double> frete = (peso, km) -> (peso / 0.5) * km;
 
-        BiFunction<Double, Double, Double> freteTotalComDesconto = frete.andThen(r -> 100 - r);
+        BiFunction<Double, Double, Double> freteNormal = (peso, km) ->  (peso * km) / 10;
 
-        System.out.println(freteTotalComDesconto.apply(pacote.getPesoPacote(), pacote.getPesoPacote()));
+        BiFunction<Double, Double, Double> freteTotalComDesconto = freteNormal.andThen(m -> 10 - m );
 
+        System.out.println(freteTotalComDesconto.apply(pacote.getPesoPacoteKg(), pacote.getDistanciaPacoteKm()));
+        System.out.println(freteTotalComDesconto.apply(pacote2.getPesoPacoteKg(), pacote2.getDistanciaPacoteKm()));
+        System.out.println(freteTotalComDesconto.apply(pacote3.getPesoPacoteKg(), pacote3.getDistanciaPacoteKm()));
 
     }
 }

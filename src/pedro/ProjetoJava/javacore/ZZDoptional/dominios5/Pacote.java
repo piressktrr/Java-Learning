@@ -2,12 +2,12 @@ package pedro.ProjetoJava.javacore.ZZDoptional.dominios5;
 
 public class Pacote {
     private String nomePacote;
-    private Double pesoPacote;
+    private Double pesoPacoteKg;
     private Double distanciaPacoteKm;
 
-    public Pacote(String nomePacote, Double pesoPacote, Double distanciaPacoteKm) {
+    public Pacote(String nomePacote, Double pesoPacoteKg, Double distanciaPacoteKm) {
         this.nomePacote = nomePacote;
-        this.pesoPacote = pesoPacote;
+        this.pesoPacoteKg = pesoPacoteKg;
         this.distanciaPacoteKm = distanciaPacoteKm;
     }
 
@@ -15,7 +15,7 @@ public class Pacote {
     public String toString() {
         return "Pacote{" +
                 "nomePacote='" + nomePacote + '\'' +
-                ", pesoPacote=" + pesoPacote +
+                ", pesoPacoteKg=" + pesoPacoteKg +
                 ", distanciaPacoteKm=" + distanciaPacoteKm +
                 '}';
     }
@@ -24,8 +24,8 @@ public class Pacote {
         return nomePacote;
     }
 
-    public Double getPesoPacote() {
-        return pesoPacote;
+    public Double getPesoPacoteKg() {
+        return pesoPacoteKg;
     }
 
     public Double getDistanciaPacoteKm() {
