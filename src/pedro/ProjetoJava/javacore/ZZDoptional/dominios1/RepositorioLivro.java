@@ -1,12 +1,14 @@
 package pedro.ProjetoJava.javacore.ZZDoptional.dominios1;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 public class RepositorioLivro {
-    private static List<Livro> livros = List.of(new Livro("Dostoievski", "Noites brancas"),
-            new Livro("James Clear", "Habitos atomicos"));
+    private static List<Livro> livros = new ArrayList<>(List.of(new Livro("Dostoievski", "Noites brancas"),
+            new Livro("James Clear", "Habitos atomicos")));
 
     public Optional<Livro> findByAutor(String autor){
         return findBy(l ->  l.getAutor().equals(autor));
@@ -26,5 +28,13 @@ public class RepositorioLivro {
         }
 
         return Optional.ofNullable(livroAux);
+    }
+
+
+    public Livro newLivro(String autor){
+        Livro newLivro = new Livro(autor, "TITULO DESCONHECIDO", LocalDateTime.now(), false);
+        livros.add(newLivro);
+        return newLivro;
+
     }
 }

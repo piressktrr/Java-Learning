@@ -6,5 +6,6 @@ public class main006 {
     public static void main(String[] args) {
         UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
         System.out.println(usuarioRepositorio.autenticar("mariakap_", "maria123"));
+        System.out.println(usuarioRepositorio.autenticar("mariakap_", "maria12356"));
     }
 }

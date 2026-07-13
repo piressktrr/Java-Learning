@@ -14,7 +14,7 @@ public class main005 {
 
         BiFunction<Double, Double, Double> freteNormal = (peso, km) ->  (peso * km) / 10;
 
-        BiFunction<Double, Double, Double> freteTotalComDesconto = freteNormal.andThen(m -> 10 - m );
+        BiFunction<Double, Double, Double> freteTotalComDesconto = freteNormal.andThen(m -> m * 0.2 );
 
         System.out.println(freteTotalComDesconto.apply(pacote.getPesoPacoteKg(), pacote.getDistanciaPacoteKm()));
         System.out.println(freteTotalComDesconto.apply(pacote2.getPesoPacoteKg(), pacote2.getDistanciaPacoteKm()));

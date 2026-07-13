@@ -13,9 +13,6 @@ public class Pedido {
         this.status = status;
     }
 
-    public Pedido() {
-
-    }
 
     @Override
     public String toString() {
@@ -34,7 +31,9 @@ public class Pedido {
         return valor;
     }
 
-    public Status getStatus() {
-        return status;
+    public  String  getStatus() {
+        return status.toString();
     }
+
+
 }

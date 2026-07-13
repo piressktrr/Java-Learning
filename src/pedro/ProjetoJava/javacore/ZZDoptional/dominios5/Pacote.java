@@ -20,9 +20,6 @@ public class Pacote {
                 '}';
     }
 
-    public String getNomePacote() {
-        return nomePacote;
-    }
 
     public Double getPesoPacoteKg() {
         return pesoPacoteKg;

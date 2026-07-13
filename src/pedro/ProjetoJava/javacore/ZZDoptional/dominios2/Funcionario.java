@@ -7,11 +7,6 @@ public class Funcionario {
     private Integer idade;
     private Endereco endereco;
 
-    public Funcionario(String nome, Integer idade) {
-        this.nome = nome;
-        this.idade = idade;
-
-    }
 
     public Funcionario(String nome, Integer idade, Endereco endereco) {
         this.nome = nome;
@@ -19,13 +14,11 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
-//    public Optional<String> returnComplemento() {
-//        return Optional.ofNullable(endereco.getComplemento());
-//    }
 
     public String returnComplemento() {
         return Optional.ofNullable(endereco.getComplemento())
                 .map(String::toUpperCase)
+                .filter(String::isBlank)
                 .orElse("NÃO HÁ COMPLEMENTO");
     }
 

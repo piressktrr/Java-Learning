@@ -7,7 +7,7 @@ public class main002 {
     public static void main(String[] args) {
 
         Funcionario funcionario = new Funcionario
-                ("pedro", 20, new Endereco("CASA 6 ", "pintassilgo", "320"));
+                ("pedro", 20, new Endereco("CASA 6 ", "mauricinho", "60"));
 
         System.out.println(funcionario.returnComplemento());
     }

@@ -1,9 +1,12 @@
 package pedro.ProjetoJava.javacore.ZZDoptional.dominios6;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class UsuarioRepositorio  {
@@ -16,21 +19,18 @@ public class UsuarioRepositorio  {
 
 
     public Optional<Usuario> autenticar(String login, String senha) {
-        Function<Usuario, Boolean> funcao = u1 -> u1.getLogin().equals(login) && u1.getSenha().equals(senha);
+        BiFunction<String, String, Boolean> funcaoValidarFinal = String::equals;
+        BiFunction<String, String, Boolean> funcaoValidarLogin = String::equalsIgnoreCase;
+
+        Usuario u = usuarios.stream()
+                .filter(f -> funcaoValidarLogin.apply(f.getLogin(), login))
+                .filter(v -> funcaoValidarFinal.apply(v.getSenha(), senha))
+                .findFirst()
+                .orElseGet(() -> anon.get());
 
 
-        for (Usuario usuario : usuarios) {
-                Usuario fds =  Optional.of(usuario)
-                    .filter(l -> l.getLogin().equalsIgnoreCase(login))
-                    .filter(l -> l.getSenha().equals(senha))
-                    .orElseGet(() -> anon.get());
+        return Optional.ofNullable(u);
 
-                return Optional.of(fds);
-//            funcao.apply(u); nao entendi como que eu posso usar essa função aqui, sinceramente
-//            nem o porque de ser uma bifunction e não uma function normal
-//            o filter/map ja não fazem o que essa interface irá fazer?
-        }
-        return Optional.empty();
     }
 
 }

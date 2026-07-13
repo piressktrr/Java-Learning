@@ -22,18 +22,22 @@ public class main003 {
         String numToString = is.apply(pedido1.getNumero());
         System.out.println(numToString);
 
+        //tipo 2
+        Supplier<String> supplier = pedido1::getStatus;
+        System.out.println(supplier.get());
+
         //Function<Integer, Double> d = i -> i.doubleValue();
-
         Function<Integer, Double> d = Integer::doubleValue;
-
+        // aqui ele transforma o integer em double e retorna
         Double intToDouble = d.apply(pedido2.getNumero());
         System.out.println(intToDouble);
 
-
-        pedidos.stream().map(String::valueOf).forEach(System.out::println);
+        // nao tem muito oq comentar aqui, ele faz os pedidos to string e printa tudo
+        pedidos.stream().map(Pedido::toString).forEach(System.out::println);
 
         Supplier<ArrayList<Pedido>> sup = ArrayList::new;
         List<Pedido> novaLista =  sup.get();
+        System.out.println(novaLista);
 
     }
 }
