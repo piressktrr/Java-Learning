@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 class Pessoa {
     private String nome;
     private int idade;
+    private TipoPessoa tipoPessoa;
 
     @Override
     public boolean equals(Object o) {
@@ -25,6 +26,26 @@ class Pessoa {
     public Pessoa(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
+    }
+
+    public Pessoa(String nome, int idade, TipoPessoa tipoPessoa) {
+        this.nome = nome;
+        this.idade = idade;
+        this.tipoPessoa = tipoPessoa;
+    }
+
+
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", tipoPessoa=" + tipoPessoa +
+                '}';
     }
 
     public String getNome() {
