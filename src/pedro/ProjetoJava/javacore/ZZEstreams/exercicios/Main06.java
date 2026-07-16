@@ -7,12 +7,13 @@ import java.util.stream.Collectors;
 
 public class Main06 {
     public static void main(String[] args) {
-        String r = TarefaRepositorio.getTarefas().stream()
+        System.out.println(listarTitulosPrioridadeMaximaFormatado());
+    }
+
+    private static String listarTitulosPrioridadeMaximaFormatado () {
+        return TarefaRepositorio.getTarefas().stream()
                 .filter(t -> t.getPrioridade() == 1)
                 .map(Tarefa::getTitulo)
-                .collect(Collectors.joining(", "));
-
-        System.out.println(r);
-
+                .collect(Collectors.joining("] [", "[", "]"));
     }
 }

@@ -10,13 +10,13 @@ import java.util.Optional;
 public class Main02 {
     public static void main(String[] args) {
         System.out.println(existeTarefaAtrasada(TarefaRepositorio.getTarefas()));
-        System.out.println(todasTarefasDoResponsavelEstaoConcluidas(TarefaRepositorio.getTarefas(), "Pedro"));
+        System.out.println(todasTarefasDoResponsavelEstaoConcluidas(TarefaRepositorio.getTarefas(), "lozang"));
         System.out.println(buscarPrimeiraTarefaCritica(TarefaRepositorio.getTarefas()));
     }
 
     public static boolean existeTarefaAtrasada(List<Tarefa> tarefas){
         return  tarefas.stream()
-                .anyMatch(t -> t.getPrazo().isAfter(LocalDate.now()) && !t.isConcluida());
+                .anyMatch(t -> t.getPrazo().isBefore(LocalDate.now()) && !t.isConcluida());
 
     }
 
@@ -29,6 +29,6 @@ public class Main02 {
     public static Optional<Tarefa> buscarPrimeiraTarefaCritica(List<Tarefa> tarefas) {
         return tarefas.stream()
                 .filter(t -> t.getPrioridade() == 1)
-                .findFirst().or(Optional::empty);
+                .findFirst();
     }
 }

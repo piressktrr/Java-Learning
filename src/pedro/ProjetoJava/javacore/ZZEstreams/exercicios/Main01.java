@@ -3,6 +3,7 @@ package pedro.ProjetoJava.javacore.ZZEstreams.exercicios;
 import pedro.ProjetoJava.javacore.ZZEstreams.dominios.Tarefa;
 import pedro.ProjetoJava.javacore.ZZEstreams.dominios.TarefaRepositorio;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Main01 {
@@ -12,6 +13,7 @@ public class Main01 {
                 .filter(t -> !t.isConcluida())
                 .map(Tarefa::getTitulo)
                 .map(String::toUpperCase)
+                .sorted(Comparator.naturalOrder())
                 .toList();
 
         System.out.println("Titulos de tarefas não concluidas: ");

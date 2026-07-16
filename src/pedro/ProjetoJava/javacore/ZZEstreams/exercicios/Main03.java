@@ -10,13 +10,15 @@ import java.util.stream.Collectors;
 
 public class Main03 {
     public static void main(String[] args) {
-        Map<Categoria, List<Tarefa>> collect = TarefaRepositorio.getTarefas().stream()
-                .collect(Collectors.groupingBy(Tarefa::getCategoria));
-
-        collect.forEach((key, value) -> {
+        tarefas().forEach((key, value) -> {
             System.out.println(key);
             System.out.println(value);
             System.out.println("-------------");
         });
+    }
+
+    private static Map<Categoria, List<Tarefa>> tarefas() {
+        return TarefaRepositorio.getTarefas().stream()
+                .collect(Collectors.groupingBy(Tarefa::getCategoria));
     }
 }

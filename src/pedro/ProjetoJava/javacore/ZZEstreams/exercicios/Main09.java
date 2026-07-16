@@ -10,15 +10,20 @@ import java.util.stream.Collectors;
 
 public class Main09 {
     public static void main(String[] args) {
-         Map<Categoria, Set<String>> collect = TarefaRepositorio.getTarefas().stream()
-                .distinct()
-                .collect(Collectors.groupingBy(Tarefa::getCategoria, Collectors.mapping(Tarefa::getResponsavel,
-                        Collectors.toSet())));
 
-         collect.forEach((key, value) -> {
+        System.out.println("Categorias por responsável: ");
+        responsaveisPorCategoria().forEach((key, value) -> {
              System.out.println(key);
              System.out.println(value);
              System.out.println("--------------");
          });
+
+    }
+
+    private static Map<Categoria, Set<String>> responsaveisPorCategoria ( ) {
+        return TarefaRepositorio.getTarefas().stream()
+
+                .collect(Collectors.groupingBy(Tarefa::getCategoria, Collectors.mapping(Tarefa::getResponsavel,
+                        Collectors.toSet())));
     }
 }

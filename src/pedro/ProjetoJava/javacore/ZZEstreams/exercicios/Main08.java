@@ -10,16 +10,19 @@ import java.util.stream.Collectors;
 
 public class Main08 {
     public static void main(String[] args) {
-         Map<Categoria, DoubleSummaryStatistics> collect = TarefaRepositorio.getTarefas().stream()
-                .collect(Collectors.groupingBy(Tarefa::getCategoria,
-                        Collectors.summarizingDouble(Tarefa::getHorasEstimadas)));
-
         System.out.println("Horas estimadas por categoria: ");
 
-         collect.forEach((k,v)->{
-             System.out.println(k);
-             System.out.println(v);
-             System.out.println("--------------");
-         });
+        horasEstimadas().forEach((k,v)->{
+            System.out.println(k);
+            System.out.println(v.getSum());
+            System.out.println("--------------");
+        });
+
+    }
+
+    private static Map<Categoria, DoubleSummaryStatistics> horasEstimadas () {
+        return TarefaRepositorio.getTarefas().stream()
+                .collect(Collectors.groupingBy(Tarefa::getCategoria,
+                        Collectors.summarizingDouble(Tarefa::getHorasEstimadas)));
     }
 }
