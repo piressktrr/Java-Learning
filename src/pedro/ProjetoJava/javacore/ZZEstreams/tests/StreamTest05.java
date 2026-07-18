@@ -22,5 +22,7 @@ public class StreamTest05 {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+
     }
 }
