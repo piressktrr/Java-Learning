@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 public class Main012 {
     public static void main(String[] args) {
-//        Stream.iterate(LocalDate.now(),i -> i + 1);
         prazosFuturos3Dias().forEach(System.out::println);
     }
 

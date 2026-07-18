@@ -8,14 +8,14 @@ import java.util.stream.Stream;
 
 public class Main011 {
     public static void main(String[] args) {
-        categoriasOrdemInversaEMaisDe7Caracteres().forEach(System.out::println);
+        categoriasOrdemInversaEMaisDe7CaracteresETamanhoDecrescente().forEach(System.out::println);
     }
 
-    private static List<String> categoriasOrdemInversaEMaisDe7Caracteres() {
+    private static List<String> categoriasOrdemInversaEMaisDe7CaracteresETamanhoDecrescente() {
         return Stream.of(Categoria.values())
                 .map(Categoria::name)
-                .filter(name -> name.length() >= 7) // so pra nao ficar 2 categorias, e sim 3
-                .sorted(Comparator.reverseOrder())
+                .filter(name -> name.length() > 7) // so pra nao ficar 2 categorias, e sim 3
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .toList();
     }
 }
