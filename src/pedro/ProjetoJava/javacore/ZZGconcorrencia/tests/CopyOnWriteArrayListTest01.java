@@ -1,6 +1,5 @@
-package pedro.ProjetoJava.javacore.ZZGconcorrencia;
+package pedro.ProjetoJava.javacore.ZZGconcorrencia.tests;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
