@@ -1,36 +1,31 @@
 package pedro.ProjetoJava.javacore.ZZGconcorrencia.exercicios.tests;
 
 
+import pedro.ProjetoJava.javacore.ZZGconcorrencia.exercicios.dominios3.Conexao;
+import pedro.ProjetoJava.javacore.ZZGconcorrencia.exercicios.dominios3.PoolDeConexoes;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Main003 {
-    public static void main(String[] args) throws InterruptedException {
-        poolC();
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        PoolDeConexoes pool = new PoolDeConexoes();
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        executor.submit(() -> {
+            for (int i = 0; i < 10; i++) {
+                pool.obterConexao();
+            }
+        });
+
+        executor.submit(() -> {
+            pool.devolverConexao(new Conexao(7));
+        });
+
+
+        executor.shutdown();
     }
 
-    private static void poolC() throws InterruptedException {
-        ExecutorService pool = Executors.newFixedThreadPool(5);
-        ReentrantLock reentrantLock = new ReentrantLock();
-        Condition condition = reentrantLock.newCondition();
-        for (int i = 0; i < 5; i++) {
-            Runnable r = () -> {
-                System.out.println(Thread.currentThread().getName());
-                try {
 
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                System.out.println(Thread.currentThread().getName() + " complete");
-            };
 
-            pool.submit(r);
-        }
-
-        pool.shutdown();
-    }
 }
