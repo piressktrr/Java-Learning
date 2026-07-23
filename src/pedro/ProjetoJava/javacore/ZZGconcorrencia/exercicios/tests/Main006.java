@@ -9,6 +9,11 @@ import java.util.concurrent.Executors;
 class Pedido{
    private int id;
    private String descriçao;
+   private int preco;
+
+    public void setPreco(int preco) {
+        this.preco = preco;
+    }
 
     @Override
     public String toString() {
@@ -18,8 +23,8 @@ class Pedido{
                 '}';
     }
 
-    public Pedido(int id) {
-        this.id = id;
+    public String getDescriçao() {
+        return descriçao;
     }
 
     public Pedido(int id, String descriçao) {
@@ -27,6 +32,9 @@ class Pedido{
         this.descriçao = descriçao;
     }
 
+    public int getId() {
+        return id;
+    }
 }
 
 class Produtor{
