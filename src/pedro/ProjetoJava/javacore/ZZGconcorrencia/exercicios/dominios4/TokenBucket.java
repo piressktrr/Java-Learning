@@ -6,30 +6,40 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TokenBucket {
-    private AtomicInteger total = new AtomicInteger(0);
-    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
-    public void repo () {
-        executor.scheduleWithFixedDelay(() -> {
-            total.addAndGet(2);
-            if (total.compareAndSet(10, 10)) {
-                executor.shutdown();
+    private static final int CAPACIDADE_MAXIMA = 10;
+    private static final int TOKENS_POR_REPOSICAO = 2;
+
+    private final AtomicInteger total;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+    public TokenBucket() {
+        this.total = new AtomicInteger(CAPACIDADE_MAXIMA); // começa cheio
+    }
+
+    public void iniciarReposicao() {
+        scheduler.scheduleWithFixedDelay(() ->
+                        total.updateAndGet(atual -> Math.min(CAPACIDADE_MAXIMA, atual + TOKENS_POR_REPOSICAO)),
+                1, 1, TimeUnit.SECONDS
+        );
+    }
+
+    public void pararReposicao() {
+        scheduler.shutdown();
+    }
+
+    public boolean tentarAdquirir() {
+        int atual;
+        do {
+            atual = total.get();
+            if (atual <= 0) {
+                return false;
             }
-        }, 0, 1, TimeUnit.SECONDS);
+        } while (!total.compareAndSet(atual, atual - 1));
+        return true;
     }
 
-    public boolean tentaAdquirir() {
-       if (total.get() > 0) {
-           total.decrementAndGet();
-           return true;
-       } else {
-           total.compareAndSet(-1, 0);
-           return false;
-       }
-
+    public int getTotal() {
+        return total.get();
     }
-
-
-
-
 }

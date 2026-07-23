@@ -5,40 +5,28 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 class Catalogo {
-    private Map<String, Integer>catalogo = new LinkedHashMap<>();
-    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private final Map<String, Integer> catalogo = new LinkedHashMap<>();
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public Catalogo(ReentrantReadWriteLock lock) {
-        this.lock = lock;
-    }
-
-    public Map<String, Integer> getCatalogo() {
-        return catalogo;
-    }
-
-    public void put (String key, Integer valor) {
+    public void put(String key, Integer valor) {
         lock.writeLock().lock();
         try {
-            if (lock.isWriteLocked()) {
-                System.out.println(Thread.currentThread().getName() + ": put");
-            }
-
+            System.out.println(Thread.currentThread().getName() + ": escrevendo " + key);
             catalogo.put(key, valor);
             Thread.sleep(2000);
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // boa prática: restaura o status de interrupção
             throw new RuntimeException(e);
         } finally {
             lock.writeLock().unlock();
         }
-
     }
 
-    public Set<String> get () {
+    public Set<String> get() {
         lock.readLock().lock();
         try {
-            return catalogo.keySet();
-        } catch ( Exception e ) {
-            throw new RuntimeException(e);
+            System.out.println(Thread.currentThread().getName() + ": lendo");
+            return new LinkedHashSet<>(catalogo.keySet()); // cópia defensiva
         } finally {
             lock.readLock().unlock();
         }
@@ -47,34 +35,23 @@ class Catalogo {
 
 public class Main002 {
     public static void main(String[] args) {
-        ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-        Catalogo catalogo = new Catalogo(lock);
+        Catalogo catalogo = new Catalogo();
+
         Runnable w = () -> {
-
-            catalogo.put ("Produto A", 1);
-            catalogo.put ("Produto B", 2);
-            catalogo.put ("Produto C", 3);
+            catalogo.put("Produto A", 1);
+            catalogo.put("Produto B", 2);
+            catalogo.put("Produto C", 3);
         };
 
-        Runnable r = () -> {
-            if (lock.isWriteLocked()) {
-                System.out.println("write locked");
-            }
-            System.out.println("reader w/ write lock");
-            try {
-                System.out.println(catalogo.get());
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-        };
+        Runnable r = () -> System.out.println(Thread.currentThread().getName() + " leu: " + catalogo.get());
 
-        Thread write = new Thread(w);
-        Thread reader = new Thread(r);
+        Thread write = new Thread(w, "writer");
+        Thread reader1 = new Thread(r, "reader-1");
+        Thread reader2 = new Thread(r, "reader-2");
 
         write.start();
-        reader.start();
-
-
+        reader1.start();
+        reader2.start();
     }
 
 }

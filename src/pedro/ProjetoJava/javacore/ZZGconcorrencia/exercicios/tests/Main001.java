@@ -8,11 +8,7 @@ class Counter{
     private AtomicInteger a = new AtomicInteger(0);
     private int sync = 0;
 
-    public void increment(){
-        incrementRaceCondition();
-        incrementSynchronized();
-        incrementAtomicInteger();
-    }
+
 
     public void incrementRaceCondition(){
         this.c++;
@@ -32,8 +28,8 @@ class Counter{
         return c;
     }
 
-    public AtomicInteger getAtomic() {
-        return a;
+    public Integer getAtomic() {
+        return a.intValue();
     }
 
     public int getSync() {
@@ -54,16 +50,20 @@ public class Main001 {
             }
         };
 
-        Thread t = new Thread(r);
-        Thread t2 = new Thread(r);
-        Thread t3 = new Thread(r);
-        t.start();
-        t2.start();
-        t3.start();
-        t.join();
-        t2.join();
-        t3.join();
+       ExecutorService executor = Executors.newFixedThreadPool(6);
+       executor.submit(r);
+       executor.submit(r);
+       executor.submit(r);
+       executor.submit(r);
+       executor.submit(r);
+       executor.submit(r);
 
+       executor.shutdown();
+
+       boolean terminou =  executor.awaitTermination(10, TimeUnit.SECONDS);
+       if (!terminou){
+           executor.shutdownNow();
+       }
 
         System.out.println(counter.getRaceCondition());
         System.out.println(counter.getSync());
