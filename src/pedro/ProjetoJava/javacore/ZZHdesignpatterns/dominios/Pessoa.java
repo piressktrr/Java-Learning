@@ -19,10 +19,10 @@ public class Pessoa {
         private int idade;
         private String cidade;
 
-        public Builder() {
+        private Builder() {
         }
 
-        public static Builder newBuilder() {
+        public static Builder newPessoa() {
             return new Builder();
         }
 

@@ -10,7 +10,7 @@ public class AirCraftSingletonLazy {
         assentos.add("1B");
     }
     private static AirCraftSingletonLazy airCraftSingletonLazy;
-    
+
     public static AirCraftSingletonLazy getAirCraftSingletonLazy() {
         if (airCraftSingletonLazy == null) {
             synchronized (AirCraftSingletonLazy.class) {
