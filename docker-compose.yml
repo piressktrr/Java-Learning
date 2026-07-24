@@ -1,0 +1,14 @@
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - javalearning_data:/var/lib/mysql
+
+volumes:
+  javalearning_data:
+  
